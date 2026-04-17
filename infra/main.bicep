@@ -186,25 +186,19 @@ resource djangoKeySecret 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
   }
 }
 
-// ── RBAC: Web App → Key Vault Secrets User ──────────────────────────────────
-
-resource kvRbac 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(vault.id, webApp.id, '4633458b-17de-408a-b874-0445c86b69e6')
-  scope: vault
-  properties: {
-    roleDefinitionId: subscriptionResourceId(
-      'Microsoft.Authorization/roleDefinitions',
-      '4633458b-17de-408a-b874-0445c86b69e6'
-    )
-    principalId: webApp.identity.principalId
-    principalType: 'ServicePrincipal'
-  }
-}
-
-// ── Custom Domain + SSL ─────────────────────────────────────────────────────
-// Domain binding and SSL certs are managed outside of Bicep (one-time CLI setup
-// + CI/CD "Ensure SSL Certificate" step). Bicep's hostname binding resource
-// resets sslState to Disabled on every deploy, destroying the cert binding.
+// ── RBAC + Custom Domain + SSL ──────────────────────────────────────────────
+// All three are managed via idempotent CLI steps in the CI/CD workflow:
+//
+// 1. RBAC: `az role assignment create` is idempotent (no error if exists).
+//    Bicep's roleAssignment resource fails with RoleAssignmentExists on
+//    re-deploy, which crashes the entire deployment.
+//
+// 2. Domain binding: `az webapp config hostname add` is a one-time setup.
+//    Bicep's hostNameBindings resource resets sslState to Disabled on every
+//    deploy, destroying the SSL cert binding.
+//
+// 3. SSL: `az webapp config ssl create/bind` creates + binds the managed cert.
+//    ARM can't create a managed cert and bind it in one deployment pass.
 
 // ── Outputs ─────────────────────────────────────────────────────────────────
 
