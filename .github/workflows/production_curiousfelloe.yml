@@ -122,3 +122,31 @@ jobs:
             --type zip \
             --clean true \
             --restart true
+
+      - name: Ensure SSL Certificate
+        run: |
+          SSL_STATE=$(az webapp show \
+            --name curiousfelloe \
+            --resource-group electricoxen-io \
+            --query "hostNameSslStates[?name=='curiousfelloe.com'].sslState" \
+            -o tsv 2>/dev/null)
+
+          if [ "$SSL_STATE" != "SniEnabled" ] && [ -n "$SSL_STATE" ]; then
+            echo "::warning::SSL not bound — restoring managed certificate..."
+
+            THUMBPRINT=$(az webapp config ssl create \
+              --name curiousfelloe \
+              --resource-group electricoxen-io \
+              --hostname curiousfelloe.com \
+              --query thumbprint -o tsv)
+
+            az webapp config ssl bind \
+              --name curiousfelloe \
+              --resource-group electricoxen-io \
+              --certificate-thumbprint "$THUMBPRINT" \
+              --ssl-type SNI
+
+            echo "✅ SSL certificate restored (thumbprint: $THUMBPRINT)"
+          else
+            echo "✅ SSL OK"
+          fi

@@ -72,6 +72,7 @@ jobs:
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Deploy Bicep
+        id: bicep
         env:
           CF_DJANGO_SECRET_KEY: ${{ secrets.CF_DJANGO_SECRET_KEY }}
           DBPASS: ${{ secrets.DBPASS }}
@@ -81,14 +82,50 @@ jobs:
             --template-file infra/main.bicep \
             --parameters infra/main.bicepparam
 
-      - name: Ensure SSL Certificate
+      # ── Post-deploy hardening ─────────────────────────────────────
+      # These steps use idempotent CLI commands and run even if
+      # Bicep fails (e.g., on RoleAssignmentExists or a transient
+      # ARM error) so SSL + RBAC are always enforced.
+
+      - name: Ensure RBAC (Key Vault Secrets User)
+        if: always()
         run: |
-          # Check if cert is already bound
+          PRINCIPAL_ID=$(az webapp identity show \
+            --name ${{ env.APP_NAME }} \
+            --resource-group ${{ env.RESOURCE_GROUP }} \
+            --query principalId -o tsv 2>/dev/null)
+
+          if [ -z "$PRINCIPAL_ID" ]; then
+            echo "::warning::Web app identity not found — skipping RBAC"
+            exit 0
+          fi
+
+          KV_ID=$(az keyvault show \
+            --name electricoxen-kv \
+            --query id -o tsv)
+
+          az role assignment create \
+            --role "Key Vault Secrets User" \
+            --assignee-object-id "$PRINCIPAL_ID" \
+            --assignee-principal-type ServicePrincipal \
+            --scope "$KV_ID" \
+            2>/dev/null || true
+
+          echo "✅ RBAC enforced (principal: $PRINCIPAL_ID)"
+
+      - name: Ensure SSL Certificate
+        if: always()
+        run: |
           SSL_STATE=$(az webapp show \
             --name ${{ env.APP_NAME }} \
             --resource-group ${{ env.RESOURCE_GROUP }} \
             --query "hostNameSslStates[?name=='${{ env.DOMAIN_NAME }}'].sslState" \
-            -o tsv)
+            -o tsv 2>/dev/null)
+
+          if [ -z "$SSL_STATE" ]; then
+            echo "::notice::Custom domain not yet bound — skipping SSL"
+            exit 0
+          fi
 
           if [ "$SSL_STATE" != "SniEnabled" ]; then
             echo "::warning::SSL not bound — creating managed certificate..."
