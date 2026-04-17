@@ -1,0 +1,38 @@
+{% extends "eo_framework/base.html" %}
+{% load static %}
+
+{% block favicon %}
+<link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+{% endblock %}
+
+{% block meta_author %}Curious Felloe Games{% endblock %}
+{% block meta_description %}Curious Felloe Games — Indie game studio. An Electric Oxen company. Coming soon.{% endblock %}
+{% block og_title %}Curious Felloe Games{% endblock %}
+{% block og_description %}Indie Games Studio — An Electric Oxen Company. Coming soon.{% endblock %}
+
+{% block nav %}{% endblock %}
+
+{% block fonts %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Curious Felloe Games",
+    "url": "https://curiousfelloe.com",
+    "description": "Indie game studio — an Electric Oxen company",
+    "parentOrganization": {
+        "@type": "Organization",
+        "name": "Electric Oxen LLC",
+        "url": "https://electricoxen.io"
+    }
+}
+</script>
+{% endblock %}

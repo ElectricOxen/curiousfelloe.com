@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+eggs/
+
+# Django
+*.sqlite3
+staticfiles/
+static/css/tailwind.css
+media/uploads/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment
+.env
+*.pem
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Tailwind binary
+tailwindcss-*
+tailwindcss.exe
+
+# Framework template cache
+.framework-templates/
+
+# Generated CSS source directives
+static/css/_eo_sources.css
+
+# Deploy artifacts
+*.zip
+app-logs.zip

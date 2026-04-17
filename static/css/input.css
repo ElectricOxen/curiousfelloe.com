@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where to scan for class usage — site templates + framework templates */
+@source "../../templates/**/*.html";
+@source "../../landing/templates/**/*.html";
+@import "./_eo_sources.css";
+
+/* Dark mode via selector */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================================
+   Curious Felloe — Design Tokens
+   A warm, indie-game-studio palette: dark backgrounds, ember/gold accents.
+   These are CF's OWN palette — not Electric Oxen's.
+   ============================================================================ */
+
+@theme {
+  /* ── Primary palette ── */
+  --color-cf-dark: #0D0D14;          /* deep midnight — main bg */
+  --color-cf-surface: #1A1A28;       /* slightly lighter surface */
+  --color-cf-ember: #E85D3A;         /* warm ember orange — primary accent */
+  --color-cf-gold: #F5C542;          /* gold — secondary accent */
+  --color-cf-cream: #F0EDE6;         /* warm cream — headings */
+  --color-cf-sand: #C4B99A;          /* muted sand — body text */
+
+  /* ── Framework eo-* tokens (mapped for nav/footer compatibility) ── */
+  --color-eo-purple: #1A1A28;
+  --color-eo-teal: #E85D3A;
+  --color-eo-cream: #F0EDE6;
+  --color-eo-dark: #0D0D14;
+  --color-eo-lavender: #F5C542;
+  --color-eo-dark-bg: #0D0D14;
+  --color-eo-dark-surface: #1A1A28;
+
+  /* ── Typography ── */
+  --font-pixel: "Press Start 2P", monospace;
+  --font-heading: "Press Start 2P", monospace;
+  --font-body: "Inter", sans-serif;
+}
+
+/* ============================================================================
+   Base Layer
+   ============================================================================ */
+
+@layer base {
+  [x-cloak] {
+    display: none !important;
+  }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-cf-dark);
+    color: var(--color-cf-sand);
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex-shrink: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cf-ember);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/* ============================================================================
+   Custom Animations
+   ============================================================================ */
+
+@layer utilities {
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}

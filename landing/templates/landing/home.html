@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Curious Felloe Games — Coming Soon{% endblock %}
+
+{% block content %}
+<main class="min-h-screen flex items-center justify-center bg-cf-dark overflow-hidden relative" style="padding-top: 0;">
+  {# Subtle animated background grain #}
+  <div class="absolute inset-0 opacity-5 pointer-events-none"
+       style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.9%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E');"></div>
+
+  <div class="relative z-10 text-center px-6 max-w-2xl mx-auto">
+    {# Wheel logo — the EO wheel without the Oxen head #}
+    <div class="mb-8 flex justify-center">
+      <div class="w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-cf-ember/10 flex items-center justify-center animate-pulse-slow">
+        <svg viewBox="0 0 100 100" class="w-24 h-24 sm:w-32 sm:h-32 text-cf-ember" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          {# Stylized wheel/gear — placeholder until real brand asset #}
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="3"/>
+          <circle cx="50" cy="50" r="12" fill="currentColor"/>
+          <line x1="50" y1="5" x2="50" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="50" y1="80" x2="50" y2="95" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="5" y1="50" x2="20" y2="50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="80" y1="50" x2="95" y2="50" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="15" y1="15" x2="26" y2="26" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="74" y1="74" x2="85" y2="85" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="85" y1="15" x2="74" y2="26" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="26" y1="74" x2="15" y2="85" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    {# Studio name #}
+    <h1 class="font-pixel text-3xl sm:text-4xl md:text-5xl text-cf-cream tracking-wider mb-4">
+      CURIOUS FELLOE
+    </h1>
+
+    <p class="text-cf-sand text-lg sm:text-xl font-body mb-2">
+      Indie Games Studio
+    </p>
+
+    <p class="text-cf-sand/60 text-sm font-body mb-10">
+      An <a href="https://electricoxen.io" class="text-cf-ember hover:text-cf-gold transition-colors underline underline-offset-4">Electric Oxen</a> Company
+    </p>
+
+    {# Divider line #}
+    <div class="w-16 h-px bg-cf-ember/40 mx-auto mb-10"></div>
+
+    {# Coming soon message #}
+    <div class="space-y-4">
+      <p class="font-pixel text-cf-ember text-sm tracking-widest uppercase">
+        Coming Soon
+      </p>
+      <p class="text-cf-sand/80 text-base font-body max-w-md mx-auto leading-relaxed">
+        We're crafting something playful. Stay tuned.
+      </p>
+    </div>
+
+    {# Contact #}
+    <div class="mt-12">
+      <a href="mailto:hello@curiousfelloe.com"
+         class="inline-flex items-center gap-2 text-cf-sand/50 hover:text-cf-ember transition-colors text-sm font-body">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+        </svg>
+        hello@curiousfelloe.com
+      </a>
+    </div>
+  </div>
+</main>
+{% endblock %}
