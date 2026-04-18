@@ -34,6 +34,11 @@ if DOMAIN_NAME:
 if DEV_DOMAIN_NAME:
     CSRF_TRUSTED_ORIGINS.append(f'https://{DEV_DOMAIN_NAME}')
 
+# Azure App Service terminates TLS at the load balancer and forwards HTTP.
+# This tells Django to trust the X-Forwarded-Proto header so request.scheme
+# returns 'https' and generated URLs (sitemaps, canonical, OG) are correct.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Application definition
 
