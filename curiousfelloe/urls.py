@@ -7,8 +7,7 @@ from django.contrib.sitemaps.views import sitemap
 from django.views.generic import TemplateView
 
 from eo_site_framework.views.health import HealthCheckView
-
-sitemaps = {}
+from landing.sitemaps import sitemaps
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),

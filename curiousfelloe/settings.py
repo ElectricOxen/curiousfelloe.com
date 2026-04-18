@@ -182,6 +182,9 @@ EO_FRAMEWORK = {
     'tagline': 'Indie Games Studio — An Electric Oxen Company',
     'copyright': '© 2026 Curious Felloe Games — An Electric Oxen LLC Company',
     'home_url_name': 'landing:home',
+    'og_image_default': '/static/media/images/brand/cf-wheel.png',
+    'twitter_handle': '',
+    'locale': 'en_US',
     'logo': {
         'alt': 'Curious Felloe',
         'width': '48',
