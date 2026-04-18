@@ -6,9 +6,8 @@
 {% endblock %}
 
 {% block meta_author %}Curious Felloe Games{% endblock %}
-{% block meta_description %}Curious Felloe Games — Indie game studio. An Electric Oxen company. Coming soon.{% endblock %}
-{% block og_title %}Curious Felloe Games{% endblock %}
-{% block og_description %}Indie Games Studio — An Electric Oxen Company. Coming soon.{% endblock %}
+
+{# SEO meta tags rendered automatically by framework seo_meta tag from EO_FRAMEWORK config #}
 
 {% block nav %}{% endblock %}
 
@@ -27,12 +26,17 @@
     "@type": "Organization",
     "name": "Curious Felloe Games",
     "url": "https://curiousfelloe.com",
+    "logo": "https://curiousfelloe.com{% static 'media/images/brand/cf-wheel.png' %}",
+    "email": "hello@curiousfelloe.com",
     "description": "Indie game studio — an Electric Oxen company",
     "parentOrganization": {
         "@type": "Organization",
         "name": "Electric Oxen LLC",
         "url": "https://electricoxen.io"
-    }
+    },
+    "sameAs": [
+        "https://github.com/ElectricOxen"
+    ]
 }
 </script>
 {% endblock %}
