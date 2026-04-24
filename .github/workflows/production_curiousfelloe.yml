@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ElectricOxen/eo-site-framework
-          ref: feature/data-native-foundation
+          ref: production
           token: ${{ steps.app-token.outputs.token }}
           path: _eo_framework
 
