@@ -43,6 +43,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Application definition
 
 INSTALLED_APPS = [
+    'eo_site_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -53,8 +54,8 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'django_htmx',
+    'django_cotton',
     'taggit',
-    'eo_site_framework',
     'landing.apps.LandingConfig',
 ]
 
@@ -88,6 +89,7 @@ TEMPLATES = [
                 'eo_site_framework.context_processors.brand_context',
                 'eo_site_framework.context_processors.nav_context',
                 'eo_site_framework.context_processors.footer_context',
+                'eo_site_framework.context_processors.telemetry_context',
             ],
         },
     },
@@ -202,7 +204,21 @@ EO_FRAMEWORK = {
         },
     },
     'favicon': 'favicon.ico',
+    'nav_menu_location': 'header',
+    'admin_menu_location': 'admin_primary',
+    'admin_account_menu_location': 'admin_account',
     'nav_links': [],
+    'menu_model': 'landing.Menu',
+    'menu_item_model': 'landing.MenuItem',
+    'section_model': 'landing.Section',
+    'telemetry': {
+        'enabled': not DEBUG,
+        'deployment_mode': 'shared',
+        'app_id': 'cf-web',
+        'tenant_id': 'curiousfelloe',
+        'cookie_domain': '.curiousfelloe.com',
+        'respect_do_not_track': True,
+    },
     'footer': {
         'email': 'hello@curiousfelloe.com',
         'tagline_html': (
