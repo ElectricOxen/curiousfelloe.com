@@ -43,7 +43,6 @@ tailwindcss.exe
 
 # Node
 node_modules/
-package-lock.json
 
 # Generated CSS source directives
 static/css/_eo_sources.css
