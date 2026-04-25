@@ -34,15 +34,15 @@ env/
 Thumbs.db
 desktop.ini
 
+# Node
+node_modules/
+
 # Tailwind binary
 tailwindcss-*
 tailwindcss.exe
 
 # Framework template cache
 .framework-templates/
-
-# Node
-node_modules/
 
 # Generated CSS source directives
 static/css/_eo_sources.css
