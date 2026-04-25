@@ -104,7 +104,10 @@ jobs:
       - name: Zip artifact for deployment
         run: |
           zip release.zip ./* -r \
-            -x ".git/*"
+            -x ".git/*" \
+            -x "antenv/*" \
+            -x "node_modules/*" \
+            -x "_eo_framework/*"
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v6
