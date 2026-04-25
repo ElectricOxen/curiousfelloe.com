@@ -1,6 +1,7 @@
 # Core
 django>=5.0,<6.0
 django-extensions==3.2.3
+django-cotton>=2.6.0
 django-htmx==1.21.0
 django-taggit>=5.0.0
 djangorestframework==3.15.2
@@ -11,4 +12,4 @@ whitenoise==6.6.0
 Markdown==3.4.3
 
 # Electric Oxen shared site framework
-eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.1.5
+eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.2.0

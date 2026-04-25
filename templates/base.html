@@ -1,6 +1,19 @@
 {% extends "eo_framework/base.html" %}
 {% load static %}
 
+{# Critical FOUC-prevention colors matching CF daisyUI theme #}
+{% block critical_bg_light %}#0D0D14{% endblock %}
+{% block critical_text_light %}#C4B99A{% endblock %}
+{% block critical_bg_dark %}#0D0D14{% endblock %}
+{% block critical_text_dark %}#C4B99A{% endblock %}
+
+{# Browser theme-color #}
+{% block theme_color_light %}#0D0D14{% endblock %}
+{% block theme_color_dark %}#0D0D14{% endblock %}
+
+{% block data_theme_light %}cf-dark{% endblock %}
+{% block data_theme_dark %}cf-dark{% endblock %}
+
 {% block favicon %}
 <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 {% endblock %}
@@ -14,7 +27,7 @@
 {% block fonts %}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Micro+5&family=Press+Start+2P&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 {% endblock %}
 
 {% block footer %}{% endblock %}

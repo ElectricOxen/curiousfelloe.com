@@ -35,8 +35,27 @@ jobs:
       - name: Configure git for private dependencies
         run: git config --global url."https://x-access-token:${{ steps.app-token.outputs.token }}@github.com/".insteadOf "https://github.com/"
 
+      - name: Checkout framework source for contract checks
+        uses: actions/checkout@v4
+        with:
+          repository: ElectricOxen/eo-site-framework
+          ref: production
+          token: ${{ steps.app-token.outputs.token }}
+          path: _eo_framework
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Enforce platform contract
+        run: python manage.py platform_check --strict
+        env:
+          PYTHONPATH: ${{ github.workspace }}/_eo_framework/src
+          APP_NAME: curiousfelloe
+          DJANGO_SECRET_KEY: build-only-not-a-real-key
+          LOCAL_MODE: "True"
+          DEBUG_MODE: "False"
+          DEFAULT_FROM_EMAIL: hello@curiousfelloe.com
+          NOTIFY_EMAIL: hello@curiousfelloe.com
 
       - name: Vendor private framework wheel for Azure deploy
         run: |
@@ -46,12 +65,19 @@ jobs:
           WHEEL_NAME=$(basename ./wheels/eo_site_framework-*.whl)
           sed -i "s|^eo-site-framework.*|./wheels/${WHEEL_NAME}|" requirements.txt
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+
       - name: Build Tailwind CSS
         run: |
           python manage.py tailwind_sources -o static/css/_eo_sources.css
-          curl -sLO https://github.com/tailwindlabs/tailwindcss/releases/latest/download/tailwindcss-linux-x64
-          chmod +x tailwindcss-linux-x64
-          ./tailwindcss-linux-x64 -i static/css/input.css -o static/css/tailwind.css --minify
+          npx @tailwindcss/cli -i static/css/input.css -o static/css/tailwind.css --minify
         env:
           APP_NAME: curiousfelloe
           DJANGO_SECRET_KEY: build-only-not-a-real-key

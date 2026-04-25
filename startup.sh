@@ -11,6 +11,15 @@ echo "startup.sh: manage.py=$(test -f manage.py && echo found || echo MISSING)"
 
 python manage.py migrate
 
+# Keep local schema index populated for admin Snowball/Schema pickers.
+# Backward-compatible: only run when framework version provides the command.
+if python manage.py help | grep -q "sync_schema_index"; then
+    echo "startup.sh: syncing approved schema index"
+    python manage.py sync_schema_index --approved-only || echo "startup.sh: sync_schema_index failed (continuing startup)"
+else
+    echo "startup.sh: sync_schema_index command not available in current framework build"
+fi
+
 gunicorn --workers 2 --threads 4 --timeout 60 \
     --access-logfile '-' --error-logfile '-' \
     --bind=0.0.0.0:8000 \
