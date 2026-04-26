@@ -90,6 +90,7 @@ TEMPLATES = [
                 'eo_site_framework.context_processors.nav_context',
                 'eo_site_framework.context_processors.footer_context',
                 'eo_site_framework.context_processors.telemetry_context',
+                'eo_site_framework.context_processors.theme_context',
             ],
         },
     },
@@ -187,6 +188,7 @@ LOGIN_REDIRECT_URL = '/'
 EO_FRAMEWORK = {
     'brand_name': 'Curious Felloe',
     'dark_theme': 'cf-dark',
+    'tenant_slug': 'curiousfelloe',
     'tagline': 'Indie Games Studio — An Electric Oxen Company',
     'copyright': '© 2026 Curious Felloe Games — An Electric Oxen LLC Company',
     'home_url_name': 'landing:home',
