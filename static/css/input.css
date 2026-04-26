@@ -16,32 +16,11 @@
   themes: cf-dark --default;
 }
 
-@plugin "daisyui/theme" {
-  name: "cf-dark";
-  color-scheme: dark;
-  --color-primary: oklch(58% 0.2 30);           /* CF Ember #E85D3A */
-  --color-primary-content: oklch(98% 0.005 80); /* White on ember */
-  --color-secondary: oklch(83% 0.17 85);         /* CF Gold #F5C542 */
-  --color-secondary-content: oklch(15% 0.03 80); /* Dark on gold */
-  --color-accent: oklch(65% 0.22 30);            /* Lighter ember */
-  --color-neutral: oklch(10% 0.02 270);          /* CF Dark #0D0D14 */
-  --color-base-100: oklch(10% 0.02 270);         /* CF Dark BG #0D0D14 */
-  --color-base-200: oklch(16% 0.03 270);         /* CF Surface #1A1A28 */
-  --color-base-300: oklch(20% 0.04 270);         /* Borders */
-  --color-base-content: oklch(78% 0.05 80);      /* CF Sand #C4B99A */
-  --color-info: oklch(70% 0.15 240);
-  --color-success: oklch(65% 0.2 150);
-  --color-warning: oklch(83% 0.17 85);           /* Gold-ish */
-  --color-error: oklch(58% 0.2 30);              /* Ember-ish */
-  --radius-selector: 0.25rem;
-  --radius-field: 0.25rem;
-  --radius-box: 0.5rem;
-  --border: 1px;
-  --depth: 0;
-}
+/* Theme definitions generated from BrandTheme DB — run: python manage.py export_theme_css */
+@import "./_brand_theme.css";
 
 /* ============================================================================
-   Curious Felloe — Design Tokens
+   Curious Felloe — Site-Specific Design Tokens
    A warm, indie-game-studio palette: dark backgrounds, ember/gold accents.
    These are CF's OWN palette — not Electric Oxen's.
    ============================================================================ */
@@ -55,11 +34,8 @@
   --color-cf-cream: #F0EDE6;         /* warm cream — headings */
   --color-cf-sand: #C4B99A;          /* muted sand — body text */
 
-
-  /* ── Typography ── */
+  /* ── Site-specific fonts (pixel art / retro) ── */
   --font-pixel: "Press Start 2P", monospace;
-  --font-heading: "Press Start 2P", monospace;
-  --font-body: "Quicksand", sans-serif;
   --font-micro: "Micro 5", monospace;
 }
 
