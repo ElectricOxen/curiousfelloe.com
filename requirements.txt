@@ -1,15 +1,10 @@
-# Core
-django>=5.0,<6.0
+# Electric Oxen shared site framework
+# (transitive: django, taggit, htmx, cotton, DRF, Markdown, Pillow, coloraide)
+eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.2.1
+
+# Site-specific dependencies
 django-extensions==3.2.3
-django-cotton>=2.6.0
-django-htmx==1.21.0
-django-taggit>=5.0.0
-djangorestframework==3.15.2
 gunicorn==22.0.0
 psycopg2>=2.9.9
 python-decouple==3.8
 whitenoise==6.6.0
-Markdown==3.4.3
-
-# Electric Oxen shared site framework
-eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.2.0
