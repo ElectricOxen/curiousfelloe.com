@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 from curiousfelloe.admin import eo_admin_site
 from eo_site_framework.views.errors import page_not_found, page_forbidden
 from eo_site_framework.views.health import HealthCheckView
+from eo_site_framework.views.privacy import PrivacyPolicyView
 from landing.sitemaps import sitemaps
 
 handler403 = page_forbidden
@@ -19,5 +20,6 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
     path('robots.txt', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     path('health/', HealthCheckView.as_view(), name='health'),
+    path('privacy/', PrivacyPolicyView.as_view(), name='privacy'),
     path('', include('landing.urls', namespace='landing')),
 ]

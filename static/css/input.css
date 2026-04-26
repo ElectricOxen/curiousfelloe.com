@@ -55,14 +55,6 @@
   --color-cf-cream: #F0EDE6;         /* warm cream — headings */
   --color-cf-sand: #C4B99A;          /* muted sand — body text */
 
-  /* ── Framework eo-* tokens (mapped for nav/footer compatibility) ── */
-  --color-eo-purple: #1A1A28;
-  --color-eo-teal: #E85D3A;
-  --color-eo-cream: #F0EDE6;
-  --color-eo-dark: #0D0D14;
-  --color-eo-lavender: #F5C542;
-  --color-eo-dark-bg: #0D0D14;
-  --color-eo-dark-surface: #1A1A28;
 
   /* ── Typography ── */
   --font-pixel: "Press Start 2P", monospace;

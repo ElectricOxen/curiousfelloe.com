@@ -29,7 +29,9 @@
       </div>
     </div>
 
-    <c-section-header title="Curious Felloe" subtitle="Indie Games Studio" eyebrow="An Electric Oxen Company" dark="true" class="mb-0" />
+    {% with s=sections.landing %}
+    <c-section-header title="{{ s.heading|default:'Curious Felloe' }}" subtitle="{{ s.description|default:'Indie Games Studio' }}" eyebrow="{{ s.name|default:'An Electric Oxen Company' }}" dark="true" class="mb-0" />
+    {% endwith %}
 
     {# Divider line #}
     <div class="w-20 h-px bg-cf-ember/40 mx-auto mt-8 mb-10"></div>
