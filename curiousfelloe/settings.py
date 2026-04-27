@@ -186,6 +186,7 @@ LOGIN_REDIRECT_URL = '/'
 # ── Curious Felloe — Site Framework Configuration ──────────────────────────
 EO_FRAMEWORK = {
     'brand_name': 'Curious Felloe',
+    'tenant_slug': 'curiousfelloe',
     'tagline': 'Indie Games Studio — An Electric Oxen Company',
     'copyright': '© 2026 Curious Felloe Games — An Electric Oxen LLC Company',
     'home_url_name': 'landing:home',

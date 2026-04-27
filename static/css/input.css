@@ -16,6 +16,8 @@
   themes: cf-dark --default;
 }
 
+@plugin "@tailwindcss/typography";
+
 @plugin "daisyui/theme" {
   name: "cf-dark";
   color-scheme: dark;
