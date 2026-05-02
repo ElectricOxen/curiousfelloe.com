@@ -190,7 +190,7 @@ EO_FRAMEWORK = {
     'tagline': 'Indie Games Studio — An Electric Oxen Company',
     'copyright': '© 2026 Curious Felloe Games — An Electric Oxen LLC Company',
     'home_url_name': 'landing:home',
-    'og_image_default': '/static/media/images/brand/cf-wheel.png',
+    'og_image_default': '/static/images/brand/cf-wheel.png',
     'twitter_handle': '',
     'locale': 'en_US',
     'logo': {
@@ -198,10 +198,10 @@ EO_FRAMEWORK = {
         'width': '48',
         'height': '48',
         'light': {
-            'fallback': 'media/images/brand/cf-wheel.png',
+            'fallback': 'images/brand/cf-wheel.png',
         },
         'dark': {
-            'fallback': 'media/images/brand/cf-wheel.png',
+            'fallback': 'images/brand/cf-wheel.png',
         },
     },
     'favicon': 'favicon.ico',
