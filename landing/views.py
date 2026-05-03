@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from landing.models import Section
+from eo_site_framework.apps.site_structure.models import Section
 
 
 def home(request):

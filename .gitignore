@@ -47,6 +47,9 @@ tailwindcss.exe
 # Generated CSS source directives
 static/css/_eo_sources.css
 
+# Production data fixtures (contains real data, do not commit)
+fixtures/prod_data.json
+
 # Deploy artifacts
 *.zip
 app-logs.zip
