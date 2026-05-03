@@ -44,6 +44,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'eo_site_framework',
+    'eo_site_framework.apps.site_structure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -186,10 +187,11 @@ LOGIN_REDIRECT_URL = '/'
 # ── Curious Felloe — Site Framework Configuration ──────────────────────────
 EO_FRAMEWORK = {
     'brand_name': 'Curious Felloe',
+    'tenant_slug': 'curiousfelloe',
     'tagline': 'Indie Games Studio — An Electric Oxen Company',
     'copyright': '© 2026 Curious Felloe Games — An Electric Oxen LLC Company',
     'home_url_name': 'landing:home',
-    'og_image_default': '/static/media/images/brand/cf-wheel.png',
+    'og_image_default': '/static/images/brand/cf-wheel.png',
     'twitter_handle': '',
     'locale': 'en_US',
     'logo': {
@@ -197,30 +199,31 @@ EO_FRAMEWORK = {
         'width': '48',
         'height': '48',
         'light': {
-            'fallback': 'media/images/brand/cf-wheel.png',
+            'fallback': 'images/brand/cf-wheel.png',
         },
         'dark': {
-            'fallback': 'media/images/brand/cf-wheel.png',
+            'fallback': 'images/brand/cf-wheel.png',
         },
     },
     'favicon': 'favicon.ico',
     'nav_menu_location': 'header',
     'admin_menu_location': 'admin_primary',
     'admin_account_menu_location': 'admin_account',
-    'nav_links': [],
-    'menu_model': 'landing.Menu',
-    'menu_item_model': 'landing.MenuItem',
-    'section_model': 'landing.Section',
+    'nav_links_source': 'database',
+    'menu_model': 'site_structure.Menu',
+    'menu_item_model': 'site_structure.MenuItem',
+    'section_model': 'site_structure.Section',
     'telemetry': {
         'enabled': not DEBUG,
         'deployment_mode': 'shared',
         'app_id': 'cf-web',
         'tenant_id': 'curiousfelloe',
+        'iglu_namespace': 'com.curiousfelloe',
+        'schema_namespace': 'com.curiousfelloe',
         'cookie_domain': '.curiousfelloe.com',
         'respect_do_not_track': True,
     },
     'footer': {
-        'email': 'hello@curiousfelloe.com',
         'tagline_html': (
             'Indie Games Studio.<br>'
             'An Electric Oxen Company.'

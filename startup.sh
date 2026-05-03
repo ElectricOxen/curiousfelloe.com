@@ -19,6 +19,10 @@ import storages
 print('startup.sh: django-storages OK')
 " || { echo "startup.sh: FATAL — missing critical packages. Aborting."; exit 1; }
 
+# One-time: rename tables from old 'landing' app to framework sub-apps (v1.2.6 domain-app-split).
+# Idempotent — safe to leave in place after first successful run.
+python manage.py migrate_domain_split --old-app landing || echo "startup.sh: migrate_domain_split failed (continuing startup)"
+
 python manage.py migrate
 
 # Keep local schema index populated for admin Snowball/Schema pickers.
