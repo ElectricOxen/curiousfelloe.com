@@ -60,9 +60,14 @@ jobs:
       - name: Vendor private framework wheel for Azure deploy
         run: |
           mkdir -p wheels
-          pip download eo-site-framework --no-deps --no-index --find-links "$(pip cache dir)" -d ./wheels/ 2>/dev/null \
-            || pip wheel "$(grep eo-site-framework requirements.txt)" --no-deps --wheel-dir ./wheels/
+          # Build from the git source (not pip cache) to ensure correct version.
+          # Extras are handled by explicit deps in requirements.txt.
+          FRAMEWORK_LINE=$(grep eo-site-framework requirements.txt | head -1)
+          # Strip extras bracket for wheel build (e.g. [blog]) — pip wheel doesn't support them
+          FRAMEWORK_REF=$(echo "$FRAMEWORK_LINE" | sed 's/\[.*\]//')
+          pip wheel "$FRAMEWORK_REF" --no-deps --no-cache-dir --wheel-dir ./wheels/
           WHEEL_NAME=$(basename ./wheels/eo_site_framework-*.whl)
+          echo "Vendored: $WHEEL_NAME"
           sed -i "s|^eo-site-framework.*|./wheels/${WHEEL_NAME}|" requirements.txt
 
       - name: Set up Node.js
