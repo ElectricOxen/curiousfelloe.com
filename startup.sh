@@ -9,6 +9,10 @@ echo "startup.sh: pwd=$(pwd)"
 echo "startup.sh: python=$(which python)"
 echo "startup.sh: manage.py=$(test -f manage.py && echo found || echo MISSING)"
 
+# One-time: rename tables from old 'landing' app to framework sub-apps (v1.2.6 domain-app-split).
+# Idempotent — safe to leave in place after first successful run.
+python manage.py migrate_domain_split --old-app landing || echo "startup.sh: migrate_domain_split failed (continuing startup)"
+
 python manage.py migrate
 
 # Keep local schema index populated for admin Snowball/Schema pickers.

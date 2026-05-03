@@ -209,7 +209,7 @@ EO_FRAMEWORK = {
     'nav_menu_location': 'header',
     'admin_menu_location': 'admin_primary',
     'admin_account_menu_location': 'admin_account',
-    'nav_links': [],
+    'nav_links_source': 'database',
     'menu_model': 'site_structure.Menu',
     'menu_item_model': 'site_structure.MenuItem',
     'section_model': 'site_structure.Section',
@@ -218,11 +218,12 @@ EO_FRAMEWORK = {
         'deployment_mode': 'shared',
         'app_id': 'cf-web',
         'tenant_id': 'curiousfelloe',
+        'iglu_namespace': 'com.curiousfelloe',
+        'schema_namespace': 'com.curiousfelloe',
         'cookie_domain': '.curiousfelloe.com',
         'respect_do_not_track': True,
     },
     'footer': {
-        'email': 'hello@curiousfelloe.com',
         'tagline_html': (
             'Indie Games Studio.<br>'
             'An Electric Oxen Company.'
