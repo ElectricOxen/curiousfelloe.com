@@ -44,6 +44,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'eo_site_framework',
+    'eo_site_framework.apps.site_structure',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -208,20 +209,21 @@ EO_FRAMEWORK = {
     'nav_menu_location': 'header',
     'admin_menu_location': 'admin_primary',
     'admin_account_menu_location': 'admin_account',
-    'nav_links': [],
-    'menu_model': 'landing.Menu',
-    'menu_item_model': 'landing.MenuItem',
-    'section_model': 'landing.Section',
+    'nav_links_source': 'database',
+    'menu_model': 'site_structure.Menu',
+    'menu_item_model': 'site_structure.MenuItem',
+    'section_model': 'site_structure.Section',
     'telemetry': {
         'enabled': not DEBUG,
         'deployment_mode': 'shared',
         'app_id': 'cf-web',
         'tenant_id': 'curiousfelloe',
+        'iglu_namespace': 'com.curiousfelloe',
+        'schema_namespace': 'com.curiousfelloe',
         'cookie_domain': '.curiousfelloe.com',
         'respect_do_not_track': True,
     },
     'footer': {
-        'email': 'hello@curiousfelloe.com',
         'tagline_html': (
             'Indie Games Studio.<br>'
             'An Electric Oxen Company.'
