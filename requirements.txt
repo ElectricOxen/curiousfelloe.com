@@ -17,4 +17,4 @@ azure-identity>=1.15
 azure-storage-blob>=12.0
 
 # Electric Oxen shared site framework
-eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.2.9
+eo-site-framework @ git+https://github.com/ElectricOxen/eo-site-framework.git@v1.2.10
