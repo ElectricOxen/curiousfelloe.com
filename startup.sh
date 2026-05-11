@@ -9,6 +9,9 @@ echo "startup.sh: pwd=$(pwd)"
 echo "startup.sh: python=$(which python)"
 echo "startup.sh: manage.py=$(test -f manage.py && echo found || echo MISSING)"
 
+# Ensure pip picks up the correct framework version (Oryx may cache stale wheels).
+pip install --force-reinstall --no-deps "$(grep 'eo-site-framework' requirements.txt)" 2>/dev/null || true
+
 # ── Dependency smoke check ─────────────────────────────────────────────
 # Fail fast if critical packages are missing (catches stale wheel cache,
 # broken extras resolution, or pip install failures).
