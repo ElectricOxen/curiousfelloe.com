@@ -22,6 +22,10 @@ import storages
 print('startup.sh: django-storages OK')
 " || { echo "startup.sh: FATAL — missing critical packages. Aborting."; exit 1; }
 
+# Ensure pip picks up the correct framework version (Oryx may cache stale wheels).
+pip install --force-reinstall --no-deps "$(grep 'eo-site-framework' requirements.txt)" 2>/dev/null || true
+python -c "import eo_site_framework; print(f'startup.sh: eo-site-framework={eo_site_framework.__version__} (after upgrade check)')"
+
 # One-time: rename tables from old 'landing' app to framework sub-apps (v1.2.6 domain-app-split).
 # Idempotent — safe to leave in place after first successful run.
 python manage.py migrate_domain_split --old-app landing || echo "startup.sh: migrate_domain_split failed (continuing startup)"
